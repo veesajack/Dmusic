@@ -34,6 +34,111 @@ export class MemStorage implements IStorage {
     this.playlists = new Map();
     this.playlistSongs = new Map();
     this.currentIds = { users: 1, songs: 1, playlists: 1, playlistSongs: 1 };
+
+    // Add demo data
+    this.initializeDemoData();
+  }
+
+  private initializeDemoData() {
+    // Create demo artists
+    const artist1: User = {
+      id: this.currentIds.users++,
+      username: "ElectroBeats",
+      password: "demo123",
+      walletAddress: "0x1234567890abcdef",
+      isArtist: true,
+      bio: "Electronic music producer from Berlin",
+      profileImage: "https://placehold.co/400x400?text=ElectroBeats"
+    };
+
+    const artist2: User = {
+      id: this.currentIds.users++,
+      username: "JazzMaster",
+      password: "demo123",
+      walletAddress: "0xabcdef1234567890",
+      isArtist: true,
+      bio: "Jazz ensemble from New Orleans",
+      profileImage: "https://placehold.co/400x400?text=JazzMaster"
+    };
+
+    this.users.set(artist1.id, artist1);
+    this.users.set(artist2.id, artist2);
+
+    // Create demo songs
+    const song1: Song = {
+      id: this.currentIds.songs++,
+      title: "Digital Dreams",
+      artistId: artist1.id,
+      duration: 180,
+      audioUrl: "https://example.com/song1.mp3",
+      coverArt: "https://placehold.co/400x400?text=Digital+Dreams",
+      streamCount: 1000
+    };
+
+    const song2: Song = {
+      id: this.currentIds.songs++,
+      title: "Neon Nights",
+      artistId: artist1.id,
+      duration: 210,
+      audioUrl: "https://example.com/song2.mp3",
+      coverArt: "https://placehold.co/400x400?text=Neon+Nights",
+      streamCount: 850
+    };
+
+    const song3: Song = {
+      id: this.currentIds.songs++,
+      title: "Smooth Jazz Cafe",
+      artistId: artist2.id,
+      duration: 240,
+      audioUrl: "https://example.com/song3.mp3",
+      coverArt: "https://placehold.co/400x400?text=Smooth+Jazz+Cafe",
+      streamCount: 1200
+    };
+
+    this.songs.set(song1.id, song1);
+    this.songs.set(song2.id, song2);
+    this.songs.set(song3.id, song3);
+
+    // Create demo playlist
+    const playlist1: Playlist = {
+      id: this.currentIds.playlists++,
+      name: "Electronic Vibes",
+      userId: artist1.id,
+      coverArt: "https://placehold.co/400x400?text=Electronic+Vibes"
+    };
+
+    const playlist2: Playlist = {
+      id: this.currentIds.playlists++,
+      name: "Jazz Essentials",
+      userId: artist2.id,
+      coverArt: "https://placehold.co/400x400?text=Jazz+Essentials"
+    };
+
+    this.playlists.set(playlist1.id, playlist1);
+    this.playlists.set(playlist2.id, playlist2);
+
+    // Add songs to playlists
+    const playlistSong1: PlaylistSong = {
+      id: this.currentIds.playlistSongs++,
+      playlistId: playlist1.id,
+      songId: song1.id
+    };
+
+    const playlistSong2: PlaylistSong = {
+      id: this.currentIds.playlistSongs++,
+      playlistId: playlist1.id,
+      songId: song2.id
+    };
+
+    const playlistSong3: PlaylistSong = {
+      id: this.currentIds.playlistSongs++,
+      playlistId: playlist2.id,
+      songId: song3.id
+    };
+
+    this.playlistSongs.set(playlistSong1.id, playlistSong1);
+    this.playlistSongs.set(playlistSong2.id, playlistSong2);
+    this.playlistSongs.set(playlistSong3.id, playlistSong3);
   }
 
   async getUser(id: number): Promise<User | undefined> {
