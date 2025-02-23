@@ -6,13 +6,14 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
-  // Song operations  
+
+  // Song operations with blockchain integration
   getSong(id: number): Promise<Song | undefined>;
   getSongsByArtist(artistId: number): Promise<Song[]>;
   createSong(song: InsertSong): Promise<Song>;
   searchSongs(query: string): Promise<Song[]>;
-  
+  streamSong(songId: number, userId: number): Promise<void>;
+
   // Playlist operations
   getPlaylist(id: number): Promise<Playlist | undefined>;
   getPlaylistSongs(playlistId: number): Promise<Song[]>;
@@ -97,6 +98,20 @@ export class MemStorage implements IStorage {
   async addSongToPlaylist(playlistId: number, songId: number): Promise<void> {
     const id = this.currentIds.playlistSongs++;
     this.playlistSongs.set(id, { id, playlistId, songId });
+  }
+
+  async streamSong(songId: number, userId: number): Promise<void> {
+    const song = await this.getSong(songId);
+    if (!song) throw new Error("Song not found");
+
+    const user = await this.getUser(userId);
+    if (!user) throw new Error("User not found");
+
+    // Increment stream count
+    song.streamCount = (song.streamCount || 0) + 1;
+    this.songs.set(songId, song);
+
+    // Note: Actual payment processing will be handled by the blockchain
   }
 }
 
