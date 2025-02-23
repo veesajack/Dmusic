@@ -24,6 +24,12 @@ export async function registerRoutes(app: Express) {
     res.json(user);
   });
 
+  // Get all artists
+  app.get("/api/artists", async (req, res) => {
+    const users = await storage.getAllUsers();
+    res.json(users.filter(user => user.isArtist));
+  });
+
   // Song routes
   app.post("/api/songs", async (req, res) => {
     const result = insertSongSchema.safeParse(req.body);
@@ -32,6 +38,12 @@ export async function registerRoutes(app: Express) {
     }
     const song = await storage.createSong(result.data);
     res.json(song);
+  });
+
+  // Get all songs
+  app.get("/api/songs", async (req, res) => {
+    const songs = await storage.getAllSongs();
+    res.json(songs);
   });
 
   app.get("/api/songs/:id", async (req, res) => {
@@ -64,6 +76,12 @@ export async function registerRoutes(app: Express) {
     }
     const playlist = await storage.createPlaylist(result.data);
     res.json(playlist);
+  });
+
+  // Get all playlists
+  app.get("/api/playlists", async (req, res) => {
+    const playlists = await storage.getAllPlaylists();
+    res.json(playlists);
   });
 
   app.get("/api/playlists/:id", async (req, res) => {

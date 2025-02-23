@@ -6,11 +6,13 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  getAllUsers(): Promise<User[]>;
 
-  // Song operations with blockchain integration
+  // Song operations
   getSong(id: number): Promise<Song | undefined>;
   getSongsByArtist(artistId: number): Promise<Song[]>;
   createSong(song: InsertSong): Promise<Song>;
+  getAllSongs(): Promise<Song[]>;
   searchSongs(query: string): Promise<Song[]>;
   streamSong(songId: number, userId: number): Promise<void>;
 
@@ -18,6 +20,7 @@ export interface IStorage {
   getPlaylist(id: number): Promise<Playlist | undefined>;
   getPlaylistSongs(playlistId: number): Promise<Song[]>;
   createPlaylist(playlist: InsertPlaylist): Promise<Playlist>;
+  getAllPlaylists(): Promise<Playlist[]>;
   addSongToPlaylist(playlistId: number, songId: number): Promise<void>;
 }
 
@@ -99,7 +102,7 @@ export class MemStorage implements IStorage {
     this.songs.set(song2.id, song2);
     this.songs.set(song3.id, song3);
 
-    // Create demo playlist
+    // Create demo playlists
     const playlist1: Playlist = {
       id: this.currentIds.playlists++,
       name: "Electronic Vibes",
@@ -141,6 +144,20 @@ export class MemStorage implements IStorage {
     this.playlistSongs.set(playlistSong3.id, playlistSong3);
   }
 
+  // Add new methods to get all data
+  async getAllUsers(): Promise<User[]> {
+    return Array.from(this.users.values());
+  }
+
+  async getAllSongs(): Promise<Song[]> {
+    return Array.from(this.songs.values());
+  }
+
+  async getAllPlaylists(): Promise<Playlist[]> {
+    return Array.from(this.playlists.values());
+  }
+
+  // Existing methods remain unchanged
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
   }
