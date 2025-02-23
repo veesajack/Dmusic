@@ -1,16 +1,12 @@
-import { ethers } from "hardhat";
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const hre = require("hardhat");
+const fs = require("fs");
+const path = require("path");
 
 async function main() {
   console.log("Starting deployment...");
 
   try {
-    const MusicPlatform = await ethers.getContractFactory("MusicPlatform");
+    const MusicPlatform = await hre.ethers.getContractFactory("MusicPlatform");
     console.log("Deploying MusicPlatform contract...");
 
     const musicPlatform = await MusicPlatform.deploy();
