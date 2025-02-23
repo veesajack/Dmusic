@@ -1,3 +1,4 @@
+process.env.HARDHAT_TELEMETRY_DISABLED = "1";
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
@@ -7,7 +8,8 @@ module.exports = {
   networks: {
     sepolia: {
       url: process.env.ETHEREUM_ENDPOINT,
-      accounts: process.env.DEPLOYER_PRIVATE_KEY ? [process.env.DEPLOYER_PRIVATE_KEY] : []
+      accounts: process.env.DEPLOYER_PRIVATE_KEY ? [`0x${process.env.DEPLOYER_PRIVATE_KEY}`] : [],
+      timeout: 0 // Disable timeout
     }
   }
 };
