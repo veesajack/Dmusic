@@ -9,7 +9,7 @@ import Home from "@/pages/home";
 
 function Router() {
   return (
-    <div className="flex h-screen bg-background text-foreground">
+    <div className="flex h-screen bg-background text-foreground bg-gradient-to-br from-purple-900 via-purple-800 to-black">
       <Sidebar />
       <main className="flex-1 overflow-y-auto">
         <Switch>
