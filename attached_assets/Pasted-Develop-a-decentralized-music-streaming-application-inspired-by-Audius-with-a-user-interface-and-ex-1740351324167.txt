@@ -1,0 +1,33 @@
+Develop a decentralized music streaming application inspired by Audius, with a user interface and experience modeled after Spotify. The app should leverage blockchain technology to ensure transparent and fair compensation for artists, while providing users with a seamless, intuitive, and visually appealing music streaming experience. Include the following key features and requirements:
+Decentralized Architecture:
+Build the app on a blockchain platform (e.g., Ethereum or a similar protocol) to manage royalty payments and music ownership transparently.
+Use smart contracts to automate artist payouts and ensure data integrity for streaming metrics.
+Spotify-like UI/UX:
+Create a clean, modern interface with intuitive navigation, mimicking Spotify’s layout (e.g., sidebar menu, bottom playback bar, and a personalized home screen).
+Add features like personalized playlists, music recommendations, and an optional dark mode theme.
+Ensure the design is responsive and optimized for iOS, Android, and web platforms.
+Core Music Streaming Features:
+Allow users to search, stream, and discover music by artist, album, genre, or playlist.
+Enable playlist creation, editing, and sharing, plus the ability to follow artists and other users.
+Support high-quality audio streaming (e.g., 320kbps) with efficient buffering and offline playback.
+Artist Tools:
+Provide artists with a dashboard to upload music, manage profiles, and track streaming stats and earnings.
+Let artists set royalty terms or pricing, aligning with the decentralized model.
+Blockchain Integration:
+Use blockchain for secure user authentication, music uploads, and transactions.
+Support cryptocurrency payments (e.g., a native token or stablecoins) for artist payouts and subscriptions.
+Scalability and Performance:
+Optimize the app to handle a large music catalog and user base without sacrificing performance.
+Use decentralized storage (e.g., IPFS) for music files to ensure availability and reduce latency.
+Security:
+Implement strong security measures to protect user data and blockchain transactions.
+Ensure compliance with privacy laws (e.g., GDPR) while maintaining transparency.
+Cross-Platform Support:
+Develop the app for iOS, Android, and web, with a consistent UI/UX across all platforms.
+Monetization:
+Offer a freemium model with ads for free users and a premium subscription for ad-free listening and extra features.
+Include decentralized monetization options like direct artist tipping with cryptocurrency.
+Community Features:
+Enable users to follow artists and listeners, share music, and engage via comments or likes.
+Build a community-driven experience with social discovery and curated playlists.
+The result should be a fully functional music streaming app that blends Audius’s artist empowerment and decentralization with Spotify’s polished, user-centric design."
